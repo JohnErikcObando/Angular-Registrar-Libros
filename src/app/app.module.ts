@@ -11,6 +11,7 @@ import { MaterialModule } from './material.module';
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
