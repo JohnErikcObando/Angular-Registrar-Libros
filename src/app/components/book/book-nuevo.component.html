@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>
+  Agregar nuevo libro
+</h1>
+
+<mat-dialog-content>
+      <section fxLayout=center>
+          <mat-card fxFlex="100%">
+            <form fxLayout="column"
+                  fxLayoutAlign="center center"
+                  fxLayoutGap="10px"
+                  #f="ngForm"
+                  (ngSubmit)="guardarLibro(f)">
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese Titulo</mat-label>
+                    <input type="text"
+                           matInput
+                           placeholder="ejem. Libro Galaxias"
+                           name="titulo"
+                           ngModel
+                           required>
+                    <mat-error>Debe ingresar el titulo del libro</mat-error>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                  <mat-label>Ingrese Descripcion</mat-label>
+                  <input type="text"
+                         matInput
+                         placeholder="ejem. Libro creado en 1979"
+                         name="descripcion"
+                         ngModel
+                         required>
+                  <mat-error>Debe ingresar la descripcion del libro</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field style="width: 100%;">
+                  <mat-label>Ingrese Precio</mat-label>
+                  <input type="text"
+                         matInput
+                         placeholder="ejem. 20000"
+                         name="precio"
+                         ngModel
+                         required>
+                  <mat-error>Debe ingresar el Precio del libro</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field style="width: 100%;" appearance="fill">
+                  <mat-label>Ingrese un Autor</mat-label>
+                  <mat-select  aria-placeholder="Seleccione un autor"
+                               name="autor"
+                               [(ngModel)]="selectAutor">
+                    <mat-option *ngFor="let bookLista of bookListas" [value]="bookLista.autor">
+                      {{bookLista.autor}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fecha" style="width: 100%;">
+                    <mat-label>Ingrese una fecha</mat-label>
+                      <input matInput [matDatepicker]="dp3" disabled>
+                      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                </mat-form-field>
+
+            </form>
+          </mat-card>
+      </section>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button >guardar</button>
+</mat-dialog-actions>

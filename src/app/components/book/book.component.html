@@ -1,0 +1,53 @@
+<div fxLayoutAlign="center center">
+
+  <mat-form-field fxFlex="60%">
+    <input matInput type="text" (keyup)="hacerFiltro($event.target.value)" placeholder="Ingrese texto">
+  </mat-form-field>
+
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="libroId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> libroId </th>
+    <td mat-cell *matCellDef="let element"> {{element.libroId}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> titulo </th>
+    <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> descripcion </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="precio">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> precio </th>
+    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="autor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> autor </th>
+    <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="desplegarColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: desplegarColumns;"></tr>
+
+</table>
+
+<mat-paginator
+      [length]="2"
+      [pageSize]="10"
+      [pageSizeOptions]="[1, 5, 25, 100]">
+</mat-paginator>
+
+<button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()">
+  <mat-icon>add</mat-icon>
+</button>

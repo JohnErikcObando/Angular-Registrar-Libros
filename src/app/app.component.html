@@ -1,33 +1,14 @@
 <mat-sidenav-container>
 
   <mat-sidenav #menu role='navigation'>
-    <p>Elemento Sidenav</p>
+    <app-menu-lista (menuToggle)="menu.toggle()"></app-menu-lista>
   </mat-sidenav>
 
   <mat-sidenav-content>
-
-    <mat-toolbar color="primary">
-
-      <button mat-icon-button (click)="menu.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <span>Libro Market</span>
-
-      <div fxFlex fxLayout fxLayoutAlign="flex-end">
-        <ul fxLayout="row" fxLayoutGap="10px" class="navegacion-menu">
-          <li routerLink="/registrar"><a>Registrar</a></li>
-          <li routerLink="/login"><a>Login</a></li>
-          <li routerLink="/"><a>Home</a></li>
-        </ul>
-      </div>
-
-    </mat-toolbar>
+    <app-barra (menuToggle)="menu.toggle()"></app-barra>
 
     <main>
-
       <router-outlet></router-outlet>
-
     </main>
 
   </mat-sidenav-content>

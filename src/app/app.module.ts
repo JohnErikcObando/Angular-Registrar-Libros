@@ -15,6 +15,14 @@ import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { LibrosComponent } from './pages/libros/libros.component';
+import { BarraComponent } from './components/navegacion/barra/barra.component';
+import { MenuListaComponent } from './components/navegacion/menu-lista/menu-lista.component';
+import { SeguridadService } from './services/seguridad.service';
+import { BookComponent } from './components/book/book.component';
+import { BookService } from './services/book.service';
+import { BookNuevoComponent } from './components/book/book-nuevo.components';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 
 
@@ -24,7 +32,11 @@ import { LibrosComponent } from './pages/libros/libros.component';
     RegistrarComponent,
     LoginComponent,
     InicioComponent,
-    LibrosComponent
+    LibrosComponent,
+    BarraComponent,
+    MenuListaComponent,
+    BookComponent,
+    BookNuevoComponent
 
   ],
   imports: [
@@ -36,8 +48,15 @@ import { LibrosComponent } from './pages/libros/libros.component';
     FormsModule,
     ReactiveFormsModule,
 
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    SeguridadService,
+    BookService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
+
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
