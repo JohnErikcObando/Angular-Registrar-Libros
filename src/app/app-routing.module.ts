@@ -6,6 +6,7 @@ import { LoginComponent } from './seguridad/login/login.component';
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { SeguridadRouter } from './seguridad/seguridad.router';
 import { BookComponent } from './components/book/book.component';
+import { AutoresComponent } from './components/autores/autores.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent, canActivate: [SeguridadRouter] },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: RegistrarComponent },
   { path: 'books', component: BookComponent },
-  // {path: '**', pathMatch:'full', redirectTo:'inicio'}
+  { path: 'autores', component: AutoresComponent },
+  { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
 @NgModule({

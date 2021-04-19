@@ -22,6 +22,7 @@ import { BookComponent } from './components/book/book.component';
 import { BookService } from './services/book.service';
 import { BookNuevoComponent } from './components/book/book-nuevo.components';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { AutoresComponent } from './components/autores/autores.component';
 
 
 
@@ -36,7 +37,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     BarraComponent,
     MenuListaComponent,
     BookComponent,
-    BookNuevoComponent
+    BookNuevoComponent,
+    AutoresComponent
 
   ],
   imports: [

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Books } from '../models/books.model';
+import { Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+
+  bookSubject = new Subject<Books>();
 
   bookLista: Books[] = [
     {
@@ -44,5 +48,10 @@ export class BookService {
 
   obtenerLibros(){
     return this.bookLista.slice();
+  }
+
+  guardarLibro( book:Books){
+      this.bookLista.push(book);
+      this.bookSubject.next(book);
   }
 }
