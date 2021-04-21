@@ -10,7 +10,6 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
-
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
@@ -23,9 +22,8 @@ import { BookService } from './services/book.service';
 import { BookNuevoComponent } from './components/book/book-nuevo.components';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AutoresComponent } from './components/autores/autores.component';
-
-
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SeguridadInterceptor } from './seguridad/registrar/seguridad-interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +36,7 @@ import { AutoresComponent } from './components/autores/autores.component';
     MenuListaComponent,
     BookComponent,
     BookNuevoComponent,
-    AutoresComponent
+    AutoresComponent,
 
   ],
   imports: [
@@ -49,12 +47,10 @@ import { AutoresComponent } from './components/autores/autores.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-
-
+    HttpClientModule
   ],
   providers: [
-    SeguridadService,
-    BookService,
+    { provide: HTTP_INTERCEPTORS, useClass: SeguridadInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
 
