@@ -12,8 +12,10 @@ export class SeguridadInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const tokenseguridad = this.seguridadService.obtenertoken();
     const request = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer' + tokenseguridad)
+      headers: req.headers.set('Authorization', 'Bearer ' + tokenseguridad)
     });
+
+    console.log('este es el token seguridad interseceptor', tokenseguridad);
 
     return next.handle(request);
   }

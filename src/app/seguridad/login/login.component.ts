@@ -9,19 +9,15 @@ import { SeguridadService } from '../../services/seguridad.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private seguridadService: SeguridadService) { }
+  constructor(private seguridadService: SeguridadService) { }
 
   ngOnInit(): void {
   }
 
-  loginUsuario(form: NgForm){
-      this.seguridadService.login({
-          email: form.value.email,
-          password: form.value.password
-
-      });
-
-      console.log(form);
+  loginUsuario(form: NgForm) {
+    this.seguridadService.login({
+      email: form.value.email,
+      password: form.value.password
+    });
   }
-
 }

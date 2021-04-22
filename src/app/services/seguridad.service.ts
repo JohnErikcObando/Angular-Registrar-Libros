@@ -22,6 +22,45 @@ export class SeguridadService {
   seguridadCambio = new Subject<boolean>();
   private usuario: Usuario;
 
+  cargarUsuario() {
+    const tokenBrowser = localStorage.getItem('token');
+
+
+    console.log('tokenBrowser', tokenBrowser);
+
+
+    if (!tokenBrowser) {
+      return;
+    }
+
+    this.token = tokenBrowser;
+    this.seguridadCambio.next(true);
+
+    this.http.get<Usuario>(this.baseURl + '/usuario')
+      .subscribe((response) => {
+        console.log('login respuesta', response);
+
+        this.token = response.token;
+        this.usuario = {
+          email: response.email,
+          nombre: response.nombre,
+          apellido: response.apellido,
+          token: this.token,
+          password: '',
+          username: response.username,
+          usuarioId: response.usuarioId,
+        }
+
+        this.seguridadCambio.next(true);
+        localStorage.setItem('token', response.token)
+
+        console.log('token local', response.token);
+
+
+      });
+
+  }
+
 
   obtenertoken() {
     return this.token;
@@ -65,6 +104,7 @@ export class SeguridadService {
         }
 
         this.seguridadCambio.next(true);
+        localStorage.setItem('token', response.token)
         this.router.navigate(['/']);
 
       });
@@ -73,6 +113,7 @@ export class SeguridadService {
   salirSesion() {
     this.usuario = null;
     this.seguridadCambio.next(false);
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
@@ -81,7 +122,7 @@ export class SeguridadService {
   }
 
   onSesion() {
-    return this.usuario != null;
+    return this.token != null;
   }
 
 }
